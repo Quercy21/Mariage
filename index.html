@@ -301,7 +301,7 @@
     font-style: normal;
     font-family: var(--cinzel);
     letter-spacing: 0.08em;
-    font-size: clamp(1.25rem, 4.4vw, 1.55rem);
+    font-size: clamp(1.4rem, 5vw, 1.75rem);
     color: var(--gold);
   }
 
@@ -1018,7 +1018,7 @@
     const table = params.get('table');
     if (nom && table) {
       const el = document.getElementById('guest-note');
-      el.innerHTML = '<strong>' + nom + '</strong><br>Nous aurons le plaisir de vous accueillir à la Table &laquo;&nbsp;' + table + '&nbsp;&raquo;.';
+      el.innerHTML = '<strong>M/Mme/Mlle ' + nom + '</strong><br>Nous aurons le plaisir de vous accueillir à la Table &laquo;&nbsp;<strong>' + table + '</strong>&nbsp;&raquo;.';
       el.style.display = 'block';
     }
   })();
