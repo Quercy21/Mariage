@@ -1016,9 +1016,13 @@
     const params = new URLSearchParams(window.location.search);
     const nom   = params.get('nom');
     const table = params.get('table');
-    if (nom && table) {
+    if (nom) {
       const el = document.getElementById('guest-note');
-      el.innerHTML = 'M/Mme/Mlle <strong>' + nom + '</strong><br>Nous aurons le plaisir de vous accueillir à la Table &laquo;&nbsp;<strong>' + table + '</strong>&nbsp;&raquo;.';
+      if (table) {
+        el.innerHTML = 'M/Mme/Mlle <strong>' + nom + '</strong><br>Nous aurons le plaisir de vous accueillir à la Table &laquo;&nbsp;<strong>' + table + '</strong>&nbsp;&raquo;.';
+      } else {
+        el.innerHTML = 'M/Mme/Mlle <strong>' + nom + '</strong><br>Nous avons hâte de vous accueillir.';
+      }
       el.style.display = 'block';
     }
   })();
