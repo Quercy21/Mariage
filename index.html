@@ -288,6 +288,22 @@
   .hero-date::before { left: -6px; }
   .hero-date::after  { right: -6px; }
 
+  .guest-note {
+    margin-top: 28px;
+    font-family: var(--body);
+    font-style: italic;
+    font-size: clamp(0.95rem, 3vw, 1.1rem);
+    color: var(--gold-l);
+    border-top: 1px solid rgba(201,168,76,0.25);
+    padding-top: 20px;
+  }
+  .guest-note strong {
+    font-style: normal;
+    font-family: var(--cinzel);
+    letter-spacing: 0.08em;
+    color: var(--gold);
+  }
+
   /* ── VERSET ── */
   .verset {
     background: var(--cream2);
@@ -737,6 +753,7 @@
     </div>
     <p class="hero-tagline reveal">Se diront Oui</p>
     <div class="hero-date reveal">31 · 10 · 2026</div>
+    <div class="guest-note reveal" id="guest-note" style="display:none;"></div>
   </section>
 
   <!-- VERSET -->
@@ -992,6 +1009,18 @@
 
   updateCountdown();
   setInterval(updateCountdown, 1000);
+
+  /* ── PLACEMENT INVITÉ (via lien personnalisé) ── */
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    const nom   = params.get('nom');
+    const table = params.get('table');
+    if (nom && table) {
+      const el = document.getElementById('guest-note');
+      el.innerHTML = 'Cher(e) <strong>' + nom + '</strong>, votre table&nbsp;: <strong>' + table + '</strong>';
+      el.style.display = 'block';
+    }
+  })();
 
   // Prevent scroll while envelope is visible
   document.body.style.overflow = 'hidden';
