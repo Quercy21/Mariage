@@ -815,8 +815,8 @@
       <div class="gold-div"><div class="gline"></div><div class="gdot"></div><div class="gline"></div></div>
     </div>
 
-    <div class="timeline reveal">
-      <div class="tl-item">
+    <div class="timeline reveal" id="prog-timeline">
+      <div class="tl-item" data-prog="vin">
         <div class="tl-time">9h30</div>
         <div class="tl-line"></div>
         <div>
@@ -824,7 +824,7 @@
           <div class="tl-place">Espace vert à Bonamoussadi,<br>entre Chocolate Sarayi et la Bicec</div>
         </div>
       </div>
-      <div class="tl-item">
+      <div class="tl-item" data-prog="vin">
         <div class="tl-time">12h00</div>
         <div class="tl-line"></div>
         <div>
@@ -832,7 +832,7 @@
           <div class="tl-place">Salle du Royaume des Témoins de Jéhovah,<br>Makepe Plateau, derrière le foyer Bandjoun</div>
         </div>
       </div>
-      <div class="tl-item">
+      <div class="tl-item" data-prog="vin">
         <div class="tl-time">15h00</div>
         <div class="tl-line"></div>
         <div>
@@ -840,7 +840,7 @@
           <div class="tl-place">Espace vert à Bonamoussadi,<br>entre Chocolate Sarayi et la Bicec</div>
         </div>
       </div>
-      <div class="tl-item">
+      <div class="tl-item" data-prog="soiree">
         <div class="tl-time">19h00</div>
         <div class="tl-line"></div>
         <div>
@@ -1020,6 +1020,19 @@
       const el = document.getElementById('guest-note');
       el.innerHTML = 'Cher(e) <strong>' + nom + '</strong>, votre table&nbsp;: <strong>' + table + '</strong>';
       el.style.display = 'block';
+    }
+  })();
+
+  /* ── PROGRAMME FILTRÉ (vin d'honneur / soirée / tout) ── */
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    const prog = params.get('prog'); // 'vin', 'soiree', ou 'tout' (défaut : tout affiché)
+    if (prog === 'vin' || prog === 'soiree') {
+      document.querySelectorAll('#prog-timeline .tl-item').forEach(item => {
+        if (item.dataset.prog !== prog) {
+          item.remove();
+        }
+      });
     }
   })();
 
