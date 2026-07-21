@@ -1018,7 +1018,7 @@
     const table = params.get('table');
     if (nom && table) {
       const el = document.getElementById('guest-note');
-      el.innerHTML = 'Cher(e) <strong>' + nom + '</strong>, votre table&nbsp;: <strong>' + table + '</strong>';
+      el.innerHTML = '<strong>' + nom + '</strong><br>Nous aurons le plaisir de vous accueillir à la Table &laquo;&nbsp;' + table + '&nbsp;&raquo;.';
       el.style.display = 'block';
     }
   })();
