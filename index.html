@@ -816,7 +816,7 @@
     </div>
 
     <div class="timeline reveal" id="prog-timeline">
-      <div class="tl-item" data-prog="vin">
+      <div class="tl-item">
         <div class="tl-time">9h30</div>
         <div class="tl-line"></div>
         <div>
@@ -824,7 +824,7 @@
           <div class="tl-place">Espace vert à Bonamoussadi,<br>entre Chocolate Sarayi et la Bicec</div>
         </div>
       </div>
-      <div class="tl-item" data-prog="vin">
+      <div class="tl-item">
         <div class="tl-time">12h00</div>
         <div class="tl-line"></div>
         <div>
@@ -1028,7 +1028,7 @@
     const params = new URLSearchParams(window.location.search);
     const prog = params.get('prog'); // 'vin', 'soiree', ou 'tout' (défaut : tout affiché)
     if (prog === 'vin' || prog === 'soiree') {
-      document.querySelectorAll('#prog-timeline .tl-item').forEach(item => {
+      document.querySelectorAll('#prog-timeline .tl-item[data-prog]').forEach(item => {
         if (item.dataset.prog !== prog) {
           item.remove();
         }
