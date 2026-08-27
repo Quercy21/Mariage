@@ -697,9 +697,153 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   }
+
+  /* ══════════════════════════════════════
+     FAIRE-PART SCREEN
+  ══════════════════════════════════════ */
+  #faire-part-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 1001;
+    background: var(--burg-d);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 28px;
+    overflow-y: auto;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+  #faire-part-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  #faire-part-screen::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg, transparent, transparent 40px,
+      rgba(201,168,76,0.02) 40px, rgba(201,168,76,0.02) 41px
+    );
+    pointer-events: none;
+  }
+  .fp-inner { position: relative; z-index: 2; max-width: 440px; }
+  .fp-label {
+    font-family: var(--cinzel);
+    font-size: 0.62rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 18px;
+  }
+  .fp-family {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.6rem, 6.5vw, 2.3rem);
+    font-weight: 400;
+    color: var(--gold-l);
+    line-height: 1.25;
+  }
+  .fp-et {
+    font-family: var(--cinzel);
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin: 10px 0;
+  }
+  .fp-text {
+    font-family: var(--body);
+    font-style: italic;
+    font-size: clamp(0.9rem, 3vw, 1.02rem);
+    color: rgba(255,255,255,0.6);
+    line-height: 1.75;
+    margin: 22px 0;
+  }
+  .fp-names {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(2.4rem, 10vw, 3.4rem);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1;
+    margin: 18px 0;
+  }
+  .fp-names .amp { color: var(--gold); font-style: normal; }
+  .fp-date {
+    font-family: var(--cinzel);
+    font-size: clamp(0.85rem, 3vw, 1rem);
+    letter-spacing: 0.15em;
+    color: var(--gold-l);
+    margin-bottom: 6px;
+  }
+  .fp-time {
+    font-family: var(--body);
+    font-style: italic;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 8px;
+  }
+  .fp-final {
+    font-family: var(--body);
+    font-style: italic;
+    font-size: clamp(0.9rem, 3vw, 1.02rem);
+    color: rgba(255,255,255,0.6);
+    line-height: 1.75;
+    margin-top: 22px;
+  }
+  .fp-btn {
+    display: inline-block;
+    margin-top: 38px;
+    font-family: var(--cinzel);
+    font-size: 0.6rem;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--burg-d);
+    background: var(--gold);
+    border: none;
+    padding: 15px 40px;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .fp-btn:hover {
+    background: var(--gold-l);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  }
 </style>
 </head>
 <body>
+
+<!-- ══════════════════════════════════════
+     FAIRE-PART SCREEN
+══════════════════════════════════════ -->
+<div id="faire-part-screen">
+  <div class="fp-inner">
+    <p class="fp-label">Les familles</p>
+    <p class="fp-family">MPOH ETINEE<br>et<br>NTOUBA PRISO</p>
+
+    <p class="fp-text">ont la grande joie de vous faire part<br>du mariage de leurs enfants</p>
+
+    <p class="fp-names">Annitta <span class="amp">&amp;</span> Philippe</p>
+
+    <p class="fp-date">Le Samedi 31 Octobre 2026</p>
+    <p class="fp-time">La cérémonie aura lieu à 8h30</p>
+
+    <div class="gold-div"><div class="gline" style="background:rgba(201,168,76,0.3)"></div><div class="gdot"></div><div class="gline" style="background:rgba(201,168,76,0.3)"></div></div>
+
+    <p class="fp-text" style="margin:18px 0 0;">Suivie d'une réception</p>
+
+    <div class="gold-div"><div class="gline" style="background:rgba(201,168,76,0.3)"></div><div class="gdot"></div><div class="gline" style="background:rgba(201,168,76,0.3)"></div></div>
+
+    <p class="fp-final">Vous êtes cordialement invités<br>à partager ce moment de bonheur.</p>
+
+    <button class="fp-btn" onclick="showEnvelope()">Découvrir l'invitation</button>
+  </div>
+</div>
 
 <!-- ══════════════════════════════════════
      ENVELOPE SCREEN
@@ -817,7 +961,7 @@
 
     <div class="timeline reveal" id="prog-timeline">
       <div class="tl-item">
-        <div class="tl-time">9h30</div>
+        <div class="tl-time">8h30</div>
         <div class="tl-line"></div>
         <div>
           <div class="tl-event">Cérémonie Civile</div>
@@ -915,7 +1059,7 @@
   <section class="rsvp-sec">
     <div class="reveal">
       <h2 class="rsvp-title">Confirmez votre présence</h2>
-      <p class="rsvp-sub">Merci de répondre avant le 24 octobre 2026</p>
+      <p class="rsvp-sub">Merci de répondre avant le 17 octobre 2026</p>
       <a class="rsvp-btn" href="https://forms.gle/y2nJyRqqfwYKZgbb6" target="_blank" rel="noopener">
         Je confirme ma présence
       </a>
@@ -950,6 +1094,11 @@
 </div><!-- /invitation -->
 
 <script>
+  /* ── FAIRE-PART → ENVELOPPE ── */
+  function showEnvelope() {
+    document.getElementById('faire-part-screen').classList.add('hidden');
+  }
+
   /* ── ENVELOPE OPEN ── */
   function openEnvelope() {
     const wrap   = document.getElementById('envelope');
@@ -984,7 +1133,7 @@
 
   /* ── COUNTDOWN ── */
   function updateCountdown() {
-    const target = new Date('2026-10-31T09:30:00').getTime();
+    const target = new Date('2026-10-31T08:30:00').getTime();
     const now    = Date.now();
     const diff   = target - now;
 
